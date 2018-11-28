@@ -1,7 +1,7 @@
 #ifndef HANDY_HPP
 #define HANDY_HPP
 // functions that I have found handy for debugging, and various uses
-
+#include"Chronometer.hpp"
 #include <vector> 
 #include <stack>
 #include <queue>
@@ -10,6 +10,8 @@
 #include <cmath>
 
 #define PRINT(x) std::cout << #x << " = " << x << "\n" 
+
+#define TIME(x) Chronometer tmier(std::chrono::high_resolution_clock::now()); x ; tmier.stop(); tmier.print("microseconds");
 
 //returns -inf if it is not string with a digit
 int getIntFromArgv(char * input){
@@ -20,11 +22,11 @@ int getIntFromArgv(char * input){
 }
 
 //returns -inf if it is not string with a digit
-int getdoubleFromArgv(char * input){
+double getdoubleFromArgv(char * input){
 	if(isdigit(input[0])){
 		return std::atof(input);
 	}
-	return (int)-HUGE_VALF;
+	return -HUGE_VALF;
 }
 
 void printVector(std::vector<int> input){
